@@ -1,6 +1,7 @@
 # Место
 
 Перед вами учебная работа — сервис Mesto.
+Ссылка на проект: https://aleksandrabab.github.io/mesto/index.html
 
 **Описание**
 
