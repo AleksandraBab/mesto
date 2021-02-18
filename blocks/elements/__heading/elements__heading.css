@@ -1,0 +1,20 @@
+.elements__heading {
+  margin: 0;
+  max-width: 80%;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (min-width:602px) and (max-width:768px){
+  .elements__heading {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
