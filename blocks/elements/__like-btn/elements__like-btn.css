@@ -6,7 +6,6 @@
   background: none;
   border: none;
   background-image: url(../../../images/heart.svg);
-  background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
   -webkit-transition: 0.3s ease-out;
