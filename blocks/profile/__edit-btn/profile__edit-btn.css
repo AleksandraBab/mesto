@@ -1,4 +1,7 @@
 .profile__edit-btn {
+  display: flex;
+  /*Выставлен для исправления бага с baseline в FireFox */
+
   box-sizing: border-box;
   width: 24px;
   height: 24px;

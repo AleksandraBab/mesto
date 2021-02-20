@@ -27,85 +27,86 @@
 
     <section class="elements section page__section">
       <ul class="elements__grid-items">
-        <li class="elements__element">
-          <div class="elements__image-wrapper">
-            <img class="elements__image" src="./images/ruskeala.jpg" alt="Скалистый берег реки">
+        <li class="element">
+          <div class="element__image-wrapper">
+            <img class="element__image" src="./images/ruskeala.jpg" alt="Скалистый берег реки">
           </div>
-          <div class="elements__caption">
-            <h2 class="elements__heading">Рускеала</h2>
-            <button class="elements__like-btn" aria-label="Добавить в избранное"></button>
-          </div>
-        </li>
-
-        <li class="elements__element">
-          <div class="elements__image-wrapper">
-            <img class="elements__image" src="./images/finzaliv.jpg" alt="Побережье залива">
-          </div>
-          <div class="elements__caption">
-            <h2 class="elements__heading">Финский залив</h2>
-            <button class="elements__like-btn" aria-label="Добавить в избранное"></button>
+          <div class="element__caption">
+            <h2 class="element__heading">Рускеала</h2>
+            <button type="button" class="element__like-btn" aria-label="Добавить в избранное"></button>
           </div>
         </li>
 
-        <li class="elements__element">
-          <div class="elements__image-wrapper">
-            <img class="elements__image" src="./images/irkutsk.jpg" alt="Дом с резными украшениями">
+        <li class="element">
+          <div class="element__image-wrapper">
+            <img class="element__image" src="./images/finzaliv.jpg" alt="Побережье залива">
           </div>
-          <div class="elements__caption">
-            <h2 class="elements__heading">Иркутск</h2>
-            <button class="elements__like-btn" aria-label="Добавить в избранное"></button>
-          </div>
-        </li>
-
-        <li class="elements__element">
-          <div class="elements__image-wrapper">
-            <img class="elements__image" src="./images/vyborgsity.jpg" alt="Вид на каменный город с высоты">
-          </div>
-          <div class="elements__caption">
-            <h2 class="elements__heading">Выборг</h2>
-            <button class="elements__like-btn" aria-label="Добавить в избранное"></button>
+          <div class="element__caption">
+            <h2 class="element__heading">Финский залив</h2>
+            <button type="button" class="element__like-btn" aria-label="Добавить в избранное"></button>
           </div>
         </li>
 
-        <li class="elements__element">
-          <div class="elements__image-wrapper">
-            <img class="elements__image" src="./images/Lenobl.jpg" alt="Железная дорога меж скал">
+        <li class="element">
+          <div class="element__image-wrapper">
+            <img class="element__image" src="./images/irkutsk.jpg" alt="Дом с резными украшениями">
           </div>
-          <div class="elements__caption">
-            <h2 class="elements__heading">Ленинградская область</h2>
-            <button class="elements__like-btn" aria-label="Добавить в избранное"></button>
+          <div class="element__caption">
+            <h2 class="element__heading">Иркутск</h2>
+            <button type="button" class="element__like-btn" aria-label="Добавить в избранное"></button>
           </div>
         </li>
 
-        <li class="elements__element">
-          <div class="elements__image-wrapper">
-            <img class="elements__image" src="./images/munku.jpg" alt="Облака в горах">
+        <li class="element">
+          <div class="element__image-wrapper">
+            <img class="element__image" src="./images/vyborgsity.jpg" alt="Вид на каменный город с высоты">
           </div>
-          <div class="elements__caption">
-            <h2 class="elements__heading">Мунку-Сардык</h2>
-            <button class="elements__like-btn" aria-label="Добавить в избранное"></button>
+          <div class="element__caption">
+            <h2 class="element__heading">Выборг</h2>
+            <button type="button" class="element__like-btn" aria-label="Добавить в избранное"></button>
+          </div>
+        </li>
+
+        <li class="element">
+          <div class="element__image-wrapper">
+            <img class="element__image" src="./images/Lenobl.jpg" alt="Железная дорога меж скал">
+          </div>
+          <div class="element__caption">
+            <h2 class="element__heading">Ленинградская область</h2>
+            <button type="button" class="element__like-btn" aria-label="Добавить в избранное"></button>
+          </div>
+        </li>
+
+        <li class="element">
+          <div class="element__image-wrapper">
+            <img class="element__image" src="./images/munku.jpg" alt="Облака в горах">
+          </div>
+          <div class="element__caption">
+            <h2 class="element__heading">Мунку-Сардык</h2>
+            <button type="button" class="element__like-btn" aria-label="Добавить в избранное"></button>
           </div>
         </li>
     </ul>
     </section>
 
-    <section class="popup">
-      <div class="popup__container">
-        <button type="button" class="popup__close-btn" aria-label="Закрыть без сохранения"></button>
-        <h2 class="popup__heading">Редактировать профиль</h2>
-        <form class="popup__form">
-          <input type="text" placeholder="Жак-Ив Кусто" class="popup__input popup__input_type_name">
-          <input type="text" placeholder="Исследователь океана" class="popup__input popup__input_type_caption">
-          <button class="popup__submit-btn">Сохранить</button>
-        </form>
-      </div>
-    </section>
   </main>
 
   <footer class="footer section page__footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
 
-  <script src="script.js"></script>
+  <div class="popup">
+    <div class="popup__container">
+      <button type="button" class="popup__close-btn" aria-label="Закрыть без сохранения"></button>
+      <h2 class="popup__heading">Редактировать профиль</h2>
+      <form class="popup__form" name="profile">
+        <input type="text" name="author" placeholder="Жак-Ив Кусто" class="popup__input popup__input_type_name" required>
+        <input type="text" name="author-caption" placeholder="Исследователь океана" class="popup__input popup__input_type_caption" required>
+        <button type="submit" class="popup__submit-btn">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

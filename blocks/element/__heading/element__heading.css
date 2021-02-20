@@ -1,4 +1,4 @@
-.elements__heading {
+.element__heading {
   margin: 0;
   max-width: 80%;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (min-width:602px) and (max-width:768px){
-  .elements__heading {
+  .element__heading {
     font-size: 18px;
     line-height: 22px;
   }

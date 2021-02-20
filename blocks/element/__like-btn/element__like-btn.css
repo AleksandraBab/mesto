@@ -1,4 +1,7 @@
-.elements__like-btn {
+.element__like-btn {
+  display: flex;
+  /*Выставлен для исправления бага с baseline в FireFox */
+
   width: 22px;
   height: 19px;
   margin-left: auto;
@@ -13,10 +16,10 @@
   transition: 0.3s ease-out;
 }
 
-.elements__like-btn:hover {
+.element__like-btn:hover {
   opacity: 0.5;
 }
 
-.elements__like-btn:focus {
+.element__like-btn:focus {
   outline: none;
 }

@@ -1,4 +1,4 @@
-.elements__caption {
+.element__caption {
   width: calc(100% - 36px);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (min-width:602px) and (max-width:768px){
-  .elements__caption {
+  .element__caption {
     margin-top: 20px;
     margin-bottom: 16px;
   }
