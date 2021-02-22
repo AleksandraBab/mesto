@@ -10,6 +10,17 @@ let captionInput = formElement.querySelector('.popup__input_type_caption');
 let nameProfile = document.querySelector('.profile__name');
 let caption = document.querySelector('.profile__caption');
 
+let likeButton = document.querySelectorAll('.element__like-btn');
+
+for (let i = 0; i < likeButton.length; i++) {
+  likeButton[i].addEventListener('click', function() {
+  likeButton[i].classList.toggle('element__like-btn_liked');
+  likeButton[i].classList.add('element__like-btn_blocked')})
+
+  likeButton[i].addEventListener('mouseout', function(){
+  likeButton[i].classList.remove('element__like-btn_blocked')})
+}
+
 function popupOpen() {
     popup.classList.toggle('popup_opened');
 
