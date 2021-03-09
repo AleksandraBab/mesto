@@ -12,9 +12,3 @@
   overflow: hidden;
 }
 
-@media screen and (min-width:602px) and (max-width:768px){
-  .element__heading {
-    font-size: 18px;
-    line-height: 22px;
-  }
-}

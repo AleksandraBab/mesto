@@ -10,6 +10,14 @@
   margin: 0;
 }
 
+@media screen and (max-width:768px){
+  .elements__grid-items {
+    -ms-grid-columns: calc((100% - 17px) / 2) 17px calc((100% - 17px) / 2);
+    grid-template-columns: repeat(2, calc((100% - 17px) / 2));
+  }
+}
+
+
 @media screen and (max-width:602px){
   .elements__grid-items {
     -ms-grid-columns: 100%;
