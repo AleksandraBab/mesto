@@ -43,12 +43,15 @@ const submitEditButton = formElementEdit.querySelector('.popup__submit-btn_type_
 const popupAdd = document.querySelector('.popup_type_add');
 const formElementAdd = document.querySelector('.popup__form_type_add');
 const submitAddButton = formElementAdd.querySelector('.popup__submit-btn_type_add');
+const placeInput = formElementAdd.querySelector('.popup__input_type_place');
+const placeSrc = formElementAdd.querySelector('.popup__input_type_src');
 const closeButtonAdd = document.querySelector('.popup__close-btn_place_add');
 
 const popupImage = document.querySelector('.popup_type_image');
 const popupPic = popupImage.querySelector('.popup__image');
 const popupName = popupImage.querySelector('.popup__caption');
 const closeButtonImage = popupImage.querySelector('.popup__close-btn_place_image');
+
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -80,7 +83,7 @@ function likeCard(evt) {
   eventTarget.classList.add('element__like-btn_blocked');
   eventTarget.addEventListener('mouseout', () => {
     eventTarget.classList.remove('element__like-btn_blocked')
-  });
+  }, { once: true });
 }
 
 function deleteCard(evt) {
@@ -117,13 +120,15 @@ function createCardDomNode(item) {
   cardImage.src = item.link;
   cardImage.alt = item.name;
 
+  addTaskListeners(newItem);
+
 	return newItem;
 }
 
 function renderCards() {
 	const result = initialCards.map(function(item) {
 		const newCard = createCardDomNode(item);
-    addTaskListeners(newCard);
+
 		return newCard;
 	});
 
@@ -133,9 +138,7 @@ function renderCards() {
 function cardSubmitHandler(evt) {
   evt.preventDefault();
 
-  const placeInput = formElementAdd.querySelector('.popup__input_type_place');
   const cardName = placeInput.value;
-  const placeSrc = formElementAdd.querySelector('.popup__input_type_src');
   const cardLink = placeSrc.value;
 
   const newCard = createCardDomNode({name: cardName, link: cardLink});
