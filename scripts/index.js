@@ -72,11 +72,14 @@ const switchButton = (formElement) => {
   buttonElement.classList.remove('popup__submit-btn_disabled');
 }
 
-//const popupContainer = popupEdit.querySelector('.popup__container')
-//popupEdit.addEventListener('click', () => closePopup(popupEdit));
-//popupContainer.removeEventListener('click', closePopup);
+const closeWithClick = (evt) => {
+  const popup = document.querySelector('.popup_opened');
 
-/* САША ЗАКОНЧИ ЭТУ ФУНКЦИЮ ЁПТА */
+  if (evt.target.classList.contains('popup')) {
+    closePopup(popup)
+ }
+}
+
 const closeWithEsc = (evt) => {
   const popup = document.querySelector('.popup_opened')
   if (evt.key === 'Escape') {
@@ -108,7 +111,7 @@ const openPopupEdit = () => {
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
-  document.addEventListener('keydown', closeWithEsc);
+  document.removeEventListener('keydown', closeWithEsc);
 }
 
 const formSubmitHandler = (evt) => {
@@ -206,6 +209,9 @@ closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 addButton.addEventListener('click', openPopupAdd);
 closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 closeButtonImage.addEventListener('click', () => closePopup(popupImage));
+popupEdit.addEventListener('click', closeWithClick);
+popupAdd.addEventListener('click', closeWithClick);
+popupImage.addEventListener('click', closeWithClick);
 
 renderCards();
 
