@@ -40,6 +40,7 @@ const closeButtonEdit = document.querySelector('.popup__close-btn_place_edit');
 const formElementEdit = document.querySelector('.popup__form_type_edit');
 const nameInput = formElementEdit.querySelector('.popup__input_type_name');
 const captionInput = formElementEdit.querySelector('.popup__input_type_caption')
+const submitEditButton = formElementEdit.querySelector('.popup__submit-btn_type_edit');
 
 const popupAdd = document.querySelector('.popup_type_add');
 const formElementAdd = document.querySelector('.popup__form_type_add');
@@ -67,11 +68,6 @@ const clearErrorElements = (formElement) => {
   });
 }
 
-const switchButton = (formElement) => {
-  const buttonElement = formElement.querySelector('.popup__submit-btn');
-  buttonElement.classList.remove('popup__submit-btn_disabled');
-}
-
 const closeWithClick = (evt) => {
   const popup = document.querySelector('.popup_opened');
 
@@ -96,6 +92,7 @@ const openPopupAdd = () => {
   placeInput.value = '';
   placeSrc.value = '';
 
+  setDisableButton(submitAddButton, 'popup__submit-btn_disabled')
   clearErrorElements(formElementAdd);
   openPopup(popupAdd);
 }
@@ -104,8 +101,8 @@ const openPopupEdit = () => {
   nameInput.value = nameProfile.textContent;
   captionInput.value = caption.textContent;
 
+  setAbleButton(submitEditButton, 'popup__submit-btn_disabled')
   clearErrorElements(formElementEdit);
-  switchButton(formElementEdit);
   openPopup(popupEdit);
 }
 
@@ -128,21 +125,16 @@ const formSubmitHandler = (evt) => {
 const likeCard = (evt) => {
   const eventTarget = evt.target;
   eventTarget.classList.toggle('element__like-btn_liked');
-  eventTarget.classList.add('element__like-btn_blocked');
-  eventTarget.addEventListener('mouseout', () => {
-    eventTarget.classList.remove('element__like-btn_blocked')
-  }, { once: true });
 }
 
 const deleteCard = (evt) => {
-  const eventTarget = evt.target;
-  const cardItem = eventTarget.closest('.element');
-  cardItem.remove();
+  evt.target.closest('.element').remove();
 }
 
 const openImage = (evt) => {
   const eventTarget = evt.target;
   popupPic.src = eventTarget.src;
+  popupPic.alt = eventTarget.alt;
   popupName.textContent = eventTarget.alt;
 
   openPopup(popupImage);
@@ -192,11 +184,12 @@ const cardSubmitHandler = (evt) => {
   const newCard = createCardDomNode({name: cardName, link: cardLink});
   addTaskListeners(newCard);
 
-  cardContainer.prepend(newCard);
-  placeInput.value = '';
-  placeSrc.value = '';
+  cardContainer.prepend(newCard)
 
   closePopup(popupAdd);
+
+  placeInput.reset();
+  placeSrc.reset();
 }
 
 /* Вызываем события */

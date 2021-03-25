@@ -27,11 +27,21 @@ const checkFormValidity = (inputList) => {
   });
 }
 
+const setAbleButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.disable = false;
+}
+
+const setDisableButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.add(inactiveButtonClass);
+  buttonElement.disable = true;
+}
+
 const toggleButtonState = (inputList, buttonElement, {inactiveButtonClass}) => {
   if (checkFormValidity (inputList)) {
-    buttonElement.classList.add(inactiveButtonClass);
+    setDisableButton(buttonElement, inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(inactiveButtonClass);
+    setAbleButton(buttonElement, inactiveButtonClass);
   }
 }
 
@@ -69,4 +79,3 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_active'
 });
-
