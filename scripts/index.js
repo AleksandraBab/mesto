@@ -36,7 +36,6 @@ const nameProfile = document.querySelector('.profile__name');
 const caption = document.querySelector('.profile__caption');
 
 const popupEdit = document.querySelector('.popup_type_edit');
-const closeButtonEdit = document.querySelector('.popup__close-btn_place_edit');
 const formElementEdit = document.querySelector('.popup__form_type_edit');
 const nameInput = formElementEdit.querySelector('.popup__input_type_name');
 const captionInput = formElementEdit.querySelector('.popup__input_type_caption')
@@ -47,12 +46,12 @@ const formElementAdd = document.querySelector('.popup__form_type_add');
 const submitAddButton = formElementAdd.querySelector('.popup__submit-btn_type_add');
 const placeInput = formElementAdd.querySelector('.popup__input_type_place');
 const placeSrc = formElementAdd.querySelector('.popup__input_type_src');
-const closeButtonAdd = document.querySelector('.popup__close-btn_place_add');
+
 
 const popupImage = document.querySelector('.popup_type_image');
 const popupPic = popupImage.querySelector('.popup__image');
 const popupName = popupImage.querySelector('.popup__caption');
-const closeButtonImage = popupImage.querySelector('.popup__close-btn_place_image');
+
 
 /* Работаем с попапами */
 
@@ -62,7 +61,7 @@ const clearErrorElements = (formElement) => {
     error.classList.remove('popup__error_active')
   });
 
-  const errorInputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const errorInputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   errorInputList.forEach ((error) => {
     error.classList.remove('popup__input_type_error')
   });
@@ -70,8 +69,7 @@ const clearErrorElements = (formElement) => {
 
 const closeWithClick = (evt) => {
   const popup = document.querySelector('.popup_opened');
-
-  if (evt.target.classList.contains('popup')) {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-btn')) {
     closePopup(popup)
  }
 }
@@ -188,8 +186,7 @@ const cardSubmitHandler = (evt) => {
 
   closePopup(popupAdd);
 
-  placeInput.reset();
-  placeSrc.reset();
+  formElementAdd.reset();
 }
 
 /* Вызываем события */
@@ -198,10 +195,7 @@ formElementEdit.addEventListener('submit', formSubmitHandler);
 formElementAdd.addEventListener('submit', cardSubmitHandler);
 
 editButton.addEventListener('click', openPopupEdit);
-closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 addButton.addEventListener('click', openPopupAdd);
-closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
-closeButtonImage.addEventListener('click', () => closePopup(popupImage));
 popupEdit.addEventListener('click', closeWithClick);
 popupAdd.addEventListener('click', closeWithClick);
 popupImage.addEventListener('click', closeWithClick);
