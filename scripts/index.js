@@ -191,8 +191,19 @@ const cardSubmitHandler = (evt) => {
 
 /* Вызываем события */
 
-formElementEdit.addEventListener('submit', formSubmitHandler);
-formElementAdd.addEventListener('submit', cardSubmitHandler);
+formElementEdit.addEventListener('submit', (evt) => {
+  const inputList = Array.from(formElementEdit.querySelectorAll(config.inputSelector));
+  if (!checkFormValidity (inputList)) {
+    formSubmitHandler(evt);
+  }
+  });
+
+formElementAdd.addEventListener('submit', (evt) => {
+  const inputList = Array.from(formElementAdd.querySelectorAll(config.inputSelector));
+  if (!checkFormValidity (inputList)) {
+    cardSubmitHandler(evt);
+  }
+  });
 
 editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', openPopupAdd);
