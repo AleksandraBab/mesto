@@ -1,3 +1,7 @@
+import {Card, popupImage} from '../scripts/Card.js'
+import {openPopup, closePopup, closeWithClick} from '../scripts/utils.js'
+import FormValidator from '../scripts/FormValidator.js'
+
 /* Объявляем переменные */
 
 const initialCards = [
@@ -27,8 +31,16 @@ const initialCards = [
   }
 ];
 
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_active'
+};
+
 const cardContainer = document.querySelector('.elements__grid-items');
-const cardTemplate = document.querySelector('.template-card');
 
 const editButton = document.querySelector('.profile__edit-btn');
 const addButton = document.querySelector('.profile__add-btn');
@@ -43,15 +55,17 @@ const submitEditButton = formElementEdit.querySelector('.popup__submit-btn_type_
 
 const popupAdd = document.querySelector('.popup_type_add');
 const formElementAdd = document.querySelector('.popup__form_type_add');
-const submitAddButton = formElementAdd.querySelector('.popup__submit-btn_type_add');
 const placeInput = formElementAdd.querySelector('.popup__input_type_place');
 const placeSrc = formElementAdd.querySelector('.popup__input_type_src');
+const submitAddButton = formElementAdd.querySelector('.popup__submit-btn_type_add');
 
+/* Валидируем формы*/
 
-const popupImage = document.querySelector('.popup_type_image');
-const popupPic = popupImage.querySelector('.popup__image');
-const popupName = popupImage.querySelector('.popup__caption');
+const AddValidator = new FormValidator (config, formElementAdd);
+const EditValidator = new FormValidator (config, formElementEdit);
 
+AddValidator.enableValidation();
+EditValidator.enableValidation()
 
 /* Работаем с попапами */
 
@@ -67,30 +81,11 @@ const clearErrorElements = (formElement) => {
   });
 }
 
-const closeWithClick = (evt) => {
-  const popup = document.querySelector('.popup_opened');
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-btn')) {
-    closePopup(popup)
- }
-}
-
-const closeWithEsc = (evt) => {
-  const popup = document.querySelector('.popup_opened')
-  if (evt.key === 'Escape') {
-    closePopup(popup)
-  }
-}
-
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeWithEsc);
-}
-
 const openPopupAdd = () => {
   placeInput.value = '';
   placeSrc.value = '';
 
-  setDisableButton(submitAddButton, 'popup__submit-btn_disabled')
+  AddValidator.setDisableButton(submitAddButton)
   clearErrorElements(formElementAdd);
   openPopup(popupAdd);
 }
@@ -99,14 +94,9 @@ const openPopupEdit = () => {
   nameInput.value = nameProfile.textContent;
   captionInput.value = caption.textContent;
 
-  setAbleButton(submitEditButton, 'popup__submit-btn_disabled')
+  EditValidator.setAbleButton(submitEditButton)
   clearErrorElements(formElementEdit);
   openPopup(popupEdit);
-}
-
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeWithEsc);
 }
 
 const formSubmitHandler = (evt) => {
@@ -120,72 +110,22 @@ const formSubmitHandler = (evt) => {
 
 /* Работаем с карточками */
 
-const likeCard = (evt) => {
-  const eventTarget = evt.target;
-  eventTarget.classList.toggle('element__like-btn_liked');
-}
+initialCards.forEach((item) => {
+  const card = new Card(item);
+  const cardElement = card.generateCard();
 
-const deleteCard = (evt) => {
-  evt.target.closest('.element').remove();
-}
-
-const openImage = (evt) => {
-  const eventTarget = evt.target;
-  popupPic.src = eventTarget.src;
-  popupPic.alt = eventTarget.alt;
-  popupName.textContent = eventTarget.alt;
-
-  openPopup(popupImage);
-}
-
-const addTaskListeners = (card) => {
-	const likeButton = card.querySelector('.element__like-btn');
-	likeButton.addEventListener('click', likeCard);
-
-  const deleteButton = card.querySelector('.element__delete-btn');
-  deleteButton.addEventListener('click', deleteCard);
-
-  const imageButton = card.querySelector('.element__image');
-  imageButton.addEventListener('click', openImage);
-}
-
-const createCardDomNode = (item) => {
-  const newItem = cardTemplate.content.cloneNode(true);
-
-  const cardName = newItem.querySelector('.element__heading');
-  cardName.textContent = item.name;
-  const cardImage = newItem.querySelector('.element__image');
-  cardImage.src = item.link;
-  cardImage.alt = item.name;
-
-  addTaskListeners(newItem);
-
-	return newItem;
-}
-
-const renderCards = () => {
-	const result = initialCards.map(function(item) {
-		const newCard = createCardDomNode(item);
-
-		return newCard;
-	});
-
-	cardContainer.append(...result);
-}
+  cardContainer.append(cardElement);
+});
 
 const cardSubmitHandler = (evt) => {
   evt.preventDefault();
 
-  const cardName = placeInput.value;
-  const cardLink = placeSrc.value;
+  const card = new Card({name: placeInput.value, link: placeSrc.value});
+  const cardElement = card.generateCard();
 
-  const newCard = createCardDomNode({name: cardName, link: cardLink});
-  addTaskListeners(newCard);
-
-  cardContainer.prepend(newCard)
+  cardContainer.prepend(cardElement)
 
   closePopup(popupAdd);
-
   formElementAdd.reset();
 }
 
@@ -193,14 +133,14 @@ const cardSubmitHandler = (evt) => {
 
 formElementEdit.addEventListener('submit', (evt) => {
   const inputList = Array.from(formElementEdit.querySelectorAll(config.inputSelector));
-  if (!checkFormValidity (inputList)) {
+  if (!EditValidator.checkFormValidity (inputList)) {
     formSubmitHandler(evt);
   }
   });
 
 formElementAdd.addEventListener('submit', (evt) => {
   const inputList = Array.from(formElementAdd.querySelectorAll(config.inputSelector));
-  if (!checkFormValidity (inputList)) {
+  if (!AddValidator.checkFormValidity (inputList)) {
     cardSubmitHandler(evt);
   }
   });
@@ -211,5 +151,6 @@ popupEdit.addEventListener('click', closeWithClick);
 popupAdd.addEventListener('click', closeWithClick);
 popupImage.addEventListener('click', closeWithClick);
 
-renderCards();
+
+
 
