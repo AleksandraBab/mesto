@@ -1,8 +1,5 @@
-import {openPopup, closeWithClick} from '../scripts/utils.js'
-
-const popupImage = document.querySelector('.popup_type_image');
-const popupPic = popupImage.querySelector('.popup__image');
-const popupName = popupImage.querySelector('.popup__caption');
+import {openPopup} from '../scripts/utils.js'
+import {popupImage, popupPic, popupName} from '../scripts/constants.js'
 
 class Card {
 
@@ -20,8 +17,10 @@ class Card {
     this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._name;
+    this._image = this._element.querySelector('.element__image');
+
+    this._image.src = this._link;
+    this._image.alt = this._name;
     this._element.querySelector('.element__heading').textContent = this._name;
 
     return this._element;
