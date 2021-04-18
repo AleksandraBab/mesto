@@ -2,10 +2,7 @@ const cardContainer = document.querySelector('.elements__grid-items');
 
 const editButton = document.querySelector('.profile__edit-btn');
 const addButton = document.querySelector('.profile__add-btn');
-const nameProfile = document.querySelector('.profile__name');
-const caption = document.querySelector('.profile__caption');
 
-const popupEdit = document.querySelector('.popup_type_edit');
 const formElementEdit = document.querySelector('.popup__form_type_edit');
 const nameInput = formElementEdit.querySelector('.popup__input_type_name');
 const captionInput = formElementEdit.querySelector('.popup__input_type_caption')
@@ -22,4 +19,4 @@ const popupPic = popupImage.querySelector('.popup__image');
 const popupName = popupImage.querySelector('.popup__caption');
 
 
-export {popupImage, popupPic, popupName, cardContainer, editButton, addButton, nameProfile, caption, popupEdit, formElementEdit, nameInput, captionInput, submitEditButton, popupAdd, formElementAdd, placeInput, placeSrc, submitAddButton}
+export {popupImage, popupPic, popupName, cardContainer, editButton, addButton, formElementEdit, nameInput, captionInput, submitEditButton, popupAdd, formElementAdd, placeInput, placeSrc, submitAddButton}

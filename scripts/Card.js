@@ -1,12 +1,10 @@
-import {openPopup} from '../scripts/utils.js'
-import {popupImage, popupPic, popupName} from '../scripts/constants.js'
-
 class Card {
 
-  constructor(config) {
+  constructor(config, handleCardClick) {
     this._template = document.querySelector('.template-card').content;
     this._link = config.link;
     this._name = config.name;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate () {
@@ -34,15 +32,6 @@ class Card {
     evt.target.classList.toggle('element__like-btn_liked');
   }
 
-  _openImage(evt) {
-    const eventTarget = evt.target;
-    popupPic.src = eventTarget.src;
-    popupPic.alt = eventTarget.alt;
-    popupName.textContent = eventTarget.alt;
-
-    openPopup(popupImage);
-  }
-
   _setEventListeners () {
     const delButton = this._element.querySelector('.element__delete-btn');
     delButton.addEventListener('click', this._deleteCard);
@@ -51,9 +40,12 @@ class Card {
 	  likeButton.addEventListener('click', this._likeCard);
 
     const imageButton = this._element.querySelector('.element__image');
-    imageButton.addEventListener('click', this._openImage);
+    imageButton.addEventListener('click', () => this._handleCardClick({
+      link: this._link,
+      name: this._text
+    }));
 
   }
 }
 
-export {Card, popupImage}
+export {Card}

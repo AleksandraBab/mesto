@@ -1,0 +1,19 @@
+{
+  "name": "ya.praktikum.mesto",
+  "version": "0.0.1",
+  "description": "students project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AleksandraBab/mesto.git"
+  },
+  "author": "Aleksandra Babicheva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AleksandraBab/mesto/issues"
+  },
+  "homepage": "https://github.com/AleksandraBab/mesto#readme"
+}
