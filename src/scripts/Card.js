@@ -11,7 +11,7 @@ class Card {
     this._element = this._template.querySelector('.element').cloneNode(true);
   }
 
-  generateCard = () => {
+  generateCard () {
     this._getTemplate();
     this._setEventListeners();
 

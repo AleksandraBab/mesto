@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 import {Card} from '../scripts/Card.js'
 import FormValidator from '../scripts/FormValidator.js'
 import {editButton, addButton, formElementEdit, submitAddButton, nameInput, captionInput, submitEditButton, formElementAdd} from '../scripts/constants.js'
