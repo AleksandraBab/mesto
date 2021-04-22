@@ -15,8 +15,5 @@ const placeSrc = formElementAdd.querySelector('.popup__input_type_src');
 const submitAddButton = formElementAdd.querySelector('.popup__submit-btn_type_add');
 
 const popupImage = document.querySelector('.popup_type_image');
-const popupPic = popupImage.querySelector('.popup__image');
-const popupName = popupImage.querySelector('.popup__caption');
 
-
-export {popupImage, popupPic, popupName, cardContainer, editButton, addButton, formElementEdit, nameInput, captionInput, submitEditButton, popupAdd, formElementAdd, placeInput, placeSrc, submitAddButton}
+export {popupImage, cardContainer, editButton, addButton, formElementEdit, nameInput, captionInput, submitEditButton, popupAdd, formElementAdd, placeInput, placeSrc, submitAddButton}

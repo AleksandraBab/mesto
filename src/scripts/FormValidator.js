@@ -37,7 +37,7 @@ export default class FormValidator {
     });
   }
 
-  setAbleButton = (buttonElement) => {
+  setEnableButton = (buttonElement) => {
     buttonElement.classList.remove(this._inactiveButtonClass);
     buttonElement.disable = false;
   }
@@ -51,7 +51,7 @@ export default class FormValidator {
     if (this.checkFormValidity()) {
       this.setDisableButton(buttonElement);
     } else {
-      this.setAbleButton(buttonElement);
+      this.setEnableButton(buttonElement);
     }
   }
 
@@ -78,16 +78,6 @@ export default class FormValidator {
   }
 
   clearErrorElements = () => {
-    const errorList = Array.from(this._formElement.querySelectorAll('.popup__error'));
-    errorList.forEach ((error) => {
-      error.classList.remove(this._errorClass)
-    });
-
-    const errorInputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    errorInputList.forEach ((error) => {
-      error.classList.remove(this._inputErrorClass)
-    });
+    this._inputList.forEach(input => this._hideInputError(input));
   }
 }
-
-

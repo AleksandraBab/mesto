@@ -61,7 +61,7 @@ editButton.addEventListener('click', () => {
   nameInput.value = userInfoObject.userName;
   captionInput.value = userInfoObject.userCaption;
 
-  editValidator.setAbleButton(submitEditButton)
+  editValidator.setEnableButton(submitEditButton)
   editValidator.clearErrorElements();
   popupEdit.open()
 });
