@@ -22,4 +22,12 @@ const closePopup = (popup) => {
   document.removeEventListener('keydown', closeWithEsc);
 }
 
-export {openPopup, closePopup, closeWithClick}
+const renderLoading = (element, isLoading, initialText) => {
+  if (isLoading) {
+    element.textContent = 'Сохранение...'
+  } else {
+    element.textContent = initialText
+  }
+}
+
+export {openPopup, closePopup, closeWithClick, renderLoading}

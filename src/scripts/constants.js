@@ -2,6 +2,7 @@ const cardContainer = document.querySelector('.elements__grid-items');
 
 const editButton = document.querySelector('.profile__edit-btn');
 const addButton = document.querySelector('.profile__add-btn');
+const avatarBlock = document.querySelector('.profile__avatar-block');
 
 const formElementEdit = document.querySelector('.popup__form_type_edit');
 const nameInput = formElementEdit.querySelector('.popup__input_type_name');
@@ -16,4 +17,12 @@ const submitAddButton = formElementAdd.querySelector('.popup__submit-btn_type_ad
 
 const popupImage = document.querySelector('.popup_type_image');
 
-export {popupImage, cardContainer, editButton, addButton, formElementEdit, nameInput, captionInput, submitEditButton, popupAdd, formElementAdd, placeInput, placeSrc, submitAddButton}
+
+const submitDelButton = formElementAdd.querySelector('.popup__submit-btn_type_del');
+
+
+const formElementAvatar = document.querySelector('.popup__form_type_avatar');
+const submitAvatarButton = formElementAvatar.querySelector('.popup__submit-btn_type_avatar');
+
+
+export {submitAvatarButton, avatarBlock, formElementAvatar, popupImage, cardContainer, editButton, addButton, formElementEdit, nameInput, captionInput, submitEditButton, popupAdd, formElementAdd, placeInput, placeSrc, submitAddButton}

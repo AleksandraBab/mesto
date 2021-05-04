@@ -13,13 +13,16 @@
 
   <main class="content">
     <section class="profile section page__section">
-      <img class="profile__avatar" src="<%=require('./images/Cousteau.jpg')%>" alt="Жак-Ив Кусто на фоне моря">
+      <div class="profile__avatar-block">
+        <img class="profile__avatar" src="#" alt="">
+        <div class="profile__bckgrnd"></div>
+      </div>
       <div class="profile__info">
         <div class="profile__row">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"></h1>
           <button type="button" class="profile__edit-btn" aria-label="Редактировать профиль"></button>
         </div>
-        <p class="profile__caption">Исследователь океана</p>
+        <p class="profile__caption"></p>
       </div>
       <button type="button" class="profile__add-btn" aria-label="Добавить карточку"></button>
     </section>
@@ -35,7 +38,10 @@
             </div>
             <div class="element__caption">
               <h2 class="element__heading"></h2>
-              <button type="button" class="element__like-btn" aria-label="Добавить в избранное"></button>
+              <div class="element__like">
+                <button type="button" class="element__like-btn" aria-label="Добавить в избранное"></button>
+                <span class="element__likecounter">1</span>
+              </div>
             </div>
           </li>
         </template>
@@ -77,6 +83,27 @@
     </div>
   </div>
 
+ <div class="popup popup_type_del">
+    <div class="popup__container">
+      <button type="button" class="popup__close-btn popup__close-btn_place_del" aria-label="Закрыть без сохранения"></button>
+      <h2 class="popup__heading">Вы уверены?</h2>
+      <form class="popup__form popup__form_type_del" name="del" action="#" method="DELETE" novalidate>
+        <button type="submit" class="popup__submit-btn popup__submit-btn_type_del">Да</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button type="button" class="popup__close-btn popup__close-btn_place_avatar" aria-label="Закрыть без сохранения"></button>
+      <h2 class="popup__heading">Обновить аватар</h2>
+       <form class="popup__form popup__form_type_avatar" name="edit-avatar" action="#" method="POST" novalidate>
+        <input type="url" name="avatar" placeholder="Вставьте ссылку на изображение" id="avatar" class="popup__input popup__input_type_avatar" required>
+        <span class="popup__error popup__error_type_avatar"></span>
+        <button type="submit" class="popup__submit-btn popup__submit-btn_type_avatar">Сохранить</button>
+      </form>
+    </div>
+  </div>
 
   <div class="popup popup_type_image">
     <figure class="popup__figure">
