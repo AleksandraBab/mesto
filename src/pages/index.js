@@ -1,18 +1,18 @@
 import '../pages/index.css';
 
-import {Card} from '../scripts/Card.js'
-import FormValidator from '../scripts/FormValidator.js'
-import {submitAvatarButton, avatarBlock, formElementAvatar, editButton, addButton, formElementEdit, submitAddButton, nameInput, captionInput, submitEditButton, formElementAdd} from '../scripts/constants.js'
-import {renderLoading} from '../scripts/utils.js'
-import {config} from '../scripts/config.js'
-import PopupWithForm from '../scripts/PopupWithForm.js'
-import PopupWithImage from '../scripts/PopupWithImage.js'
-import PopupWithSubmit from '../scripts/PopupWithSubmit.js'
-import UserInfo from '../scripts/UserInfo.js'
-import Section from '../scripts/Section.js'
-import Api from '../scripts/Api.js'
+import {Card} from '../components/Card.js'
+import FormValidator from '../components/FormValidator.js'
+import {submitAvatarButton, avatarBlock, formElementAvatar, editButton, addButton, formElementEdit, submitAddButton, nameInput, captionInput, submitEditButton, formElementAdd} from '../utils/constants.js'
+import {renderLoading} from '../utils/utils.js'
+import {config} from '../utils/config.js'
+import PopupWithForm from '../components/PopupWithForm.js'
+import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithSubmit from '../components/PopupWithSubmit.js'
+import UserInfo from '../components/UserInfo.js'
+import Section from '../components/Section.js'
+import Api from '../components/Api.js'
 
-/* Инициализация страницы, объявление классов */
+/* Инициализация страницы, объявление экземпляров классов */
 
 const userInfo = new UserInfo ({nameSelector: '.profile__name', captionSelector:'.profile__caption', avatarSelector: '.profile__avatar'})
 
@@ -69,16 +69,14 @@ avatarValidator.enableValidation();
 
 const createCard = (obj) => {
   const card = new Card({
+    cardSelector: '.template-card',
     config: obj, 
     handleCardClick: () => popupImage.open({link: obj.link, name: obj.name}),
     handleLikeClick: () => {
       if (!card.isLiked()) {
         api.setLike(obj._id)
         .then((res) => {
-          card.likeCounter = res.likes.length;
-          card.countLike()
-          card.likeArr = res.likes
-          card.likeCard()
+          card.updateLikes(res.likes)
         })
         .catch((err) => {
           console.log(err);
@@ -86,10 +84,7 @@ const createCard = (obj) => {
       else {
         api.deleteLike(obj._id)
          .then((res) => {
-           card.likeCounter = res.likes.length;
-           card.countLike()
-           card.likeArr = res.likes
-           card.likeCard()
+           card.updateLikes(res.likes)
          })
          .catch((err) => {
            console.log(err);
@@ -142,7 +137,7 @@ editButton.addEventListener('click', () => {
   nameInput.value = userInfoObject.userName;
   captionInput.value = userInfoObject.userCaption;
 
-  editValidator.setEnableButton(submitEditButton)
+  editValidator.setEnableButton()
   editValidator.clearErrorElements();
   popupEdit.open()
 });
@@ -171,7 +166,7 @@ popupAdd.setEventListeners();
 
 addButton.addEventListener('click', () => {
 
-    addValidator.setDisableButton(submitAddButton)
+    addValidator.setDisableButton()
     addValidator.clearErrorElements();
     popupAdd.open();
 });
@@ -200,7 +195,7 @@ popupAvatar.setEventListeners();
 
 avatarBlock.addEventListener('click', () => {
 
-    avatarValidator.setDisableButton(submitAddButton)
+    avatarValidator.setDisableButton()
     avatarValidator.clearErrorElements();
     popupAvatar.open();
 });

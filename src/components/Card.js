@@ -1,12 +1,12 @@
 class Card {
 
-  constructor({config, handleCardClick, handleLikeClick, handleDelClick, userId}) {
-    this._template = document.querySelector('.template-card').content;
+  constructor({cardSelector, config, handleCardClick, handleLikeClick, handleDelClick, userId}) {
+    this._template = document.querySelector(cardSelector).content;
     this._link = config.link;
     this._name = config.name;
     this._ownerId = config.owner._id;
-    this.likeCounter = config.likes.length
-    this.likeArr = config.likes
+    this._likeCounter = config.likes.length
+    this._likeArr = config.likes
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
     this._handleDelClick = handleDelClick;
@@ -24,14 +24,14 @@ class Card {
   }
 
   isLiked = () => {
-    return this.likeArr.some(  (element) => {
+    return this._likeArr.some(  (element) => {
       return element._id === this._userId;
     })
   }
 
  _renderLikeElement = () => {
    if (this.isLiked() === true) {
-     this.likeCard()
+     this._likeCard()
    }    
  }
 
@@ -44,7 +44,7 @@ class Card {
     this._image.alt = this._name;
 
     this._element.querySelector('.element__heading').textContent = this._name;
-    this._element.querySelector('.element__likecounter').textContent = this.likeCounter;
+    this._element.querySelector('.element__likecounter').textContent = this._likeCounter;
 
     this._renderDelElement();
     this._renderLikeElement();
@@ -58,10 +58,18 @@ class Card {
   }
 
   countLike () {
-    this._element.querySelector('.element__likecounter').textContent = this.likeCounter;
+    this._element.querySelector('.element__likecounter').textContent = this._likeCounter;
   }
 
-  likeCard() {
+  updateLikes = (likeArr) => {
+    this._likeArr = likeArr
+    this._likeCounter = likeArr.length;
+    this.countLike()
+    this._likeCard()
+  }
+
+
+  _likeCard() {
     this._element.querySelector('.element__like-btn').classList.toggle('element__like-btn_liked');
   }
 
